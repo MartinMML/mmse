@@ -4,16 +4,21 @@
  */
 package com.mmse.insurance.view;
 
+import com.mmse.insurance.control.Controller;
+import oracle.jrockit.jfr.tools.ConCatRepository;
+
 /**
  *
  * @author Adam
  */
 public class ClaimsViewForm extends javax.swing.JPanel {
+    private Controller controller;
 
     /**
      * Creates new form claimsViewForm
      */
-    public ClaimsViewForm() {
+    public ClaimsViewForm(Controller controller) {
+        this.controller = controller;
         initComponents();
     }
 
@@ -29,32 +34,7 @@ public class ClaimsViewForm extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Firstname", "Surname", "Personal ID", "Car price", "Damage", "Severenity", "State"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Boolean.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        jTable1.setModel(new ClaimTableModel(controller.getModel().getDb().getAllClaims()));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

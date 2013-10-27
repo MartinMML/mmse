@@ -72,6 +72,11 @@ public class Claim {
     public void setState(ClaimState state) {
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        return "Claim{" + "id=" + id + ", customer=" + customer + ", severe=" + severe + ", carPrice=" + carPrice + ", damagePrice=" + damagePrice + ", state=" + state + '}';
+    }
     
     
     
