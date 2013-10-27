@@ -18,8 +18,7 @@ public class ClaimTest {
 
     @Test
     public void testCreation() {
-        Claim c = new Claim(1, new Customer("","",1), false, 10.0, 10.0, ClaimState.Paid);
-        assertEquals(1, c.getId());
+        Claim c = new Claim(new Customer("","",1),  10.0, 10.0, ClaimState.Paid);
         assertEquals(new Customer("","",1), c.getCustomer());
         assertEquals(false, c.isSevere());
         assertEquals(10.0, c.getCarPrice(),0);
