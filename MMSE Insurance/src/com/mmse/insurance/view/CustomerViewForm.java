@@ -5,35 +5,29 @@
 package com.mmse.insurance.view;
 
 import com.mmse.insurance.control.Controller;
-import com.mmse.insurance.model.entities.Claim;
+import com.mmse.insurance.model.entities.Customer;
 import java.util.Set;
-import javax.swing.JTable;
-import oracle.jrockit.jfr.tools.ConCatRepository;
 
 /**
  *
  * @author Adam
  */
-public class ClaimsViewForm extends javax.swing.JPanel {
-
-    
-    private Controller controller;
-
+public class CustomerViewForm extends javax.swing.JPanel {
+    Set<Customer> customers;
+    Controller controller;
     /**
-     * Creates new form claimsViewForm
+     * Creates new form CustomerViewForm
      */
-    public ClaimsViewForm(Controller controller) {
+    public CustomerViewForm(Controller controller) {
         this.controller = controller;
+        customers = controller.getModel().getDb().getCustomers();
         initComponents();
     }
     
-    public void setClaims(Set<Claim> claimsByCustomer) {
-        ((ClaimTableModel)jTable1.getModel()).setClaims(claimsByCustomer);
-    }
-    
-    public void refresh(){
+     public void refresh(){
         jTable1.addNotify();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,24 +41,26 @@ public class ClaimsViewForm extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jTable1.setModel(new ClaimTableModel(controller.getModel().getDb().getAllClaims()));
+        jTable1.setModel(new CustomerTableModel(customers));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    void resfresh() {
+        jTable1.addNotify();
+    }
 }

@@ -19,6 +19,12 @@ public class ClaimTableModel extends AbstractTableModel{
         this.claims = claims;
     }
 
+    public void setClaims(Set<Claim> claims) {
+        this.claims = claims;
+    }
+
+    
+    
     
     @Override
     public int getRowCount() {

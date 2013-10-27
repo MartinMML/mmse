@@ -4,34 +4,31 @@
  */
 package com.mmse.insurance.model.entities;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Adam
  */
 public class Claim {
-    private int id;
     private Customer customer;
     private boolean severe;
     private double carPrice;
     private double damagePrice;
     private ClaimState state;  
+    private Date date;
 
-    public Claim(int id, Customer customer, boolean severe, double carPrice, double damagePrice, ClaimState state) {
-        this.id = id;
+    public Claim(Customer customer, double carPrice, double damagePrice, ClaimState state) {
+        
         this.customer = customer;
-        this.severe = severe;
+        this.severe = false;
         this.carPrice = carPrice;
         this.damagePrice = damagePrice;
         this.state = state;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+        this.date = new Date();
+    }   
+    
 
     public Customer getCustomer() {
         return customer;
@@ -75,9 +72,9 @@ public class Claim {
 
     @Override
     public String toString() {
-        return "Claim{" + "id=" + id + ", customer=" + customer + ", severe=" + severe + ", carPrice=" + carPrice + ", damagePrice=" + damagePrice + ", state=" + state + '}';
+        return "Claim{" + "customer=" + customer + ", severe=" + severe + ", carPrice=" + carPrice + ", damagePrice=" + damagePrice + ", state=" + state + ", date=" + date + '}';
     }
-    
+
     
     
     
