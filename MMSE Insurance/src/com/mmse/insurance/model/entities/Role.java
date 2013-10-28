@@ -1,11 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mmse.insurance.model.entities;
 
 /**
- *
+ * num used for defining the role of a User (see User.java)
  * @author Adam
  */
 public enum Role {

@@ -1,17 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mmse.insurance.model.entities;
 
-import java.util.Calendar;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
+ * Entity class defined with getters and setters only
  * @author Adam
  */
-public class Claim {
+public class Claim implements Serializable {
+	
+    /** Default serial version ID */
+	private static final long serialVersionUID = 1L;
     private Customer customer;
     private boolean severe;
     private double carPrice;

@@ -1,17 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mmse.insurance.model.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
- *
+ * Entity class defined with getters and setters,
+ * A Hash function and an override of the equals method
  * @author Adam
  */
-public class Customer {
+public class Customer implements Serializable {
     
+    /** Default serial version ID */
+	private static final long serialVersionUID = 1L;
     private String firstName;
     private String lastName;
     private int personalId;

@@ -1,11 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mmse.insurance.model.entities;
 
 /**
- *
+ * Enum used for defining the state of a claim (UnApproved by default)
  * @author Adam
  */
 public enum ClaimState {
