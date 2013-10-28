@@ -1,17 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mmse.insurance.view;
 
-import com.mmse.insurance.model.entities.Claim;
 import java.util.Set;
+
 import javax.swing.table.AbstractTableModel;
+
+import com.mmse.insurance.model.entities.Claim;
 
 /**
  *
  * @author Adam
  */
+@SuppressWarnings("serial")
 public class ClaimTableModel extends AbstractTableModel{
 
     private Set<Claim> claims;
@@ -22,9 +21,6 @@ public class ClaimTableModel extends AbstractTableModel{
     public void setClaims(Set<Claim> claims) {
         this.claims = claims;
     }
-
-    
-    
     
     @Override
     public int getRowCount() {

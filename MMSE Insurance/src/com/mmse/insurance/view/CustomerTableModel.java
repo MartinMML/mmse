@@ -1,25 +1,22 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mmse.insurance.view;
 
-import com.mmse.insurance.model.entities.Claim;
-import com.mmse.insurance.model.entities.Customer;
 import java.util.Set;
+
 import javax.swing.table.AbstractTableModel;
+
+import com.mmse.insurance.model.entities.Customer;
 
 /**
  *
  * @author Adam
  */
+@SuppressWarnings("serial")
 public class CustomerTableModel extends AbstractTableModel{
 
     private Set<Customer> customers;
     public CustomerTableModel(Set<Customer> customers) {
         this.customers = customers;
     }
-
     
     @Override
     public int getRowCount() {
