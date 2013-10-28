@@ -4,15 +4,13 @@
  */
 package com.mmse.insurance.view;
 
-import com.mmse.insurance.control.Controller;
-import com.mmse.insurance.model.entities.Claim;
-import java.awt.CardLayout;
 import java.util.Set;
-import javafx.scene.control.SplitPane;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import com.mmse.insurance.control.Controller;
+import com.mmse.insurance.model.entities.Claim;
 
 /**
  *

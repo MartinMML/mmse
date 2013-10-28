@@ -4,11 +4,10 @@
  */
 package com.mmse.insurance.view;
 
+import java.util.Set;
+
 import com.mmse.insurance.control.Controller;
 import com.mmse.insurance.model.entities.Claim;
-import java.util.Set;
-import javax.swing.JTable;
-import oracle.jrockit.jfr.tools.ConCatRepository;
 
 /**
  *
