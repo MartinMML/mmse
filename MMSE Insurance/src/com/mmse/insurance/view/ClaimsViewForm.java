@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.mmse.insurance.control.Controller;
 import com.mmse.insurance.model.entities.Claim;
+import com.mmse.insurance.model.entities.Customer;
 
 /**
  *
@@ -62,4 +63,9 @@ public class ClaimsViewForm extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    
+     //TESTing model includes claim
+        public boolean acceptanceTestAddClaimTest(Claim claim){
+            return ((ClaimTableModel)jTable1.getModel()).contains(claim);
+        }
 }

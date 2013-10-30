@@ -3,6 +3,9 @@ package com.mmse.insurance.view;
 import javax.swing.JFrame;
 
 import com.mmse.insurance.control.Controller;
+import com.mmse.insurance.model.entities.Claim;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -189,4 +192,24 @@ public class ClaimInputForm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
+    
+    /**
+     * This is due to claim add acceptance test
+     * @param claim 
+     */
+    public void handleAddClaimAcceptanceTest(Claim claim){
+        controller.getModel().getDb().addCustomer(claim.getCustomer());
+        CustomerIdTextField.setText(Integer.toString(claim.getCustomer().getPersonalId()));
+        CustomerNameTextField.setText(claim.getCustomer().getFirstName());
+        CustomerSurnameTextField.setText(claim.getCustomer().getLastName());
+        DamageTextField.setText(Double.toString(claim.getDamagePrice()));
+        PriceTextField.setText(Double.toString(claim.getCarPrice()));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AddCustomerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        addButton.doClick();        
+    }
+
 }

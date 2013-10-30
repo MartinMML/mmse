@@ -61,4 +61,9 @@ public class CustomerTableModel extends AbstractTableModel{
         return null;
     }
     
+    public boolean contains(Customer customer){
+        if(customers.contains(customer)) return true;
+        else return false;
+    }
+    
 }

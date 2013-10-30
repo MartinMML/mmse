@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 
 import com.mmse.insurance.control.Controller;
 import com.mmse.insurance.model.entities.Claim;
+import com.mmse.insurance.model.entities.Customer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -167,5 +170,57 @@ public class MainView extends javax.swing.JFrame {
 
     public void setClaims(Set<Claim> claimsByCustomer) {
         claimForm.setClaims(claimsByCustomer);
+    }
+    
+    public boolean acceptanceTestAddCustomer(Customer customer){
+        JFrame frame = new JFrame("Add new Customer");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel contentPane = new AddCustomerForm(controller);
+        frame.setContentPane(contentPane);
+        frame.pack();   
+        frame.setLocationByPlatform(true);
+        frame.setVisible(true);
+        ((AddCustomerForm)contentPane).performAcceptanceTestAddClient(customer);
+        
+        boolean result =  customerForm.acceptanceTestAddCustomerTest(customer);
+        //sleep to see the result
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        controller.getModel().getDb().deleteCustomer(customer);
+        
+        return result;
+        
+        
+    }
+    
+    
+    public boolean acceptanceTestAddClaim(Claim claim){
+        JFrame frame = new JFrame("Add new Claim");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel contentPane = new ClaimInputForm(controller);
+        frame.setContentPane(contentPane);
+        frame.pack();   
+        frame.setLocationByPlatform(true);
+        frame.setVisible(true);
+        
+        ((ClaimInputForm)contentPane).handleAddClaimAcceptanceTest(claim);
+        
+        boolean result =  claimForm.acceptanceTestAddClaimTest(claim);
+        //sleep to see the result
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        controller.getModel().getDb().deleteClaim(claim);
+        
+        return result;
+        
+        
     }
 }

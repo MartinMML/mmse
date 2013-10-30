@@ -72,4 +72,10 @@ public class ClaimTableModel extends AbstractTableModel{
         return null;
     }
     
+    public boolean contains(Claim claim){
+        System.out.println(claim + "contains():"+ claims.contains(claim));
+        System.out.println(claims);
+        return claims.contains(claim);
+    }
+    
 }

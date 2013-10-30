@@ -11,7 +11,7 @@ public class Main {
 	static MainView view;
 
 	public static void main(String[] args) {
-		model = new Model();
+		model = new Model(false);
 		controller = new Controller(model);
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {

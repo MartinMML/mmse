@@ -49,8 +49,16 @@ public class Database implements Serializable {
         customers.add(customer);
     }
     
+    public void deleteCustomer(Customer customer){
+        customers.remove(customer);
+    }
+    
     public void addClaim(Claim claim){
         claims.add(claim);
+    }
+
+    public void deleteClaim(Claim claim) {
+        claims.remove(claim);
     }
     
     

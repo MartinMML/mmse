@@ -2,6 +2,7 @@ package com.mmse.insurance.model.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Entity class defined with getters and setters only
@@ -73,6 +74,41 @@ public class Claim implements Serializable {
     public String toString() {
         return "Claim{" + "customer=" + customer + ", severe=" + severe + ", carPrice=" + carPrice + ", damagePrice=" + damagePrice + ", state=" + state + ", date=" + date + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Claim other = (Claim) obj;
+        if (!Objects.equals(this.customer, other.customer)) {
+            return false;
+        }
+        if (this.severe != other.severe) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.carPrice) != Double.doubleToLongBits(other.carPrice)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.damagePrice) != Double.doubleToLongBits(other.damagePrice)) {
+            return false;
+        }
+        if (this.state != other.state) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
     
     

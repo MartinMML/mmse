@@ -17,13 +17,15 @@ public class Model {
 
 	private String DB_PATH = "database.obj";
 	private Database db;
+        boolean testing;
 
-	public Model() {
+	public Model(boolean testing) {
 		db = new Database();
+                this.testing = testing;
 
 		// testForView();
 		
-		loadDatabase();
+		if(!testing) loadDatabase();
 		
 	}
 
@@ -31,6 +33,7 @@ public class Model {
 	 * Assuming we have one and only one Database instance, we do not specify any parameter or any return value here
 	 */
 	public void saveDatabase() {
+            if(!testing){
 		try {
 			FileOutputStream fileOut = new FileOutputStream(DB_PATH);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -41,6 +44,7 @@ public class Model {
 		}catch(IOException i) {
 			i.printStackTrace();
 		}
+            }
 	}
 
 	/**

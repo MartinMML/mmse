@@ -22,6 +22,7 @@ public class CustomerViewForm extends javax.swing.JPanel {
 		this.controller = controller;
 		customers = controller.getModel().getDb().getCustomers();
 		initComponents();
+                
 	}
 
 	public void refresh(){
@@ -63,4 +64,9 @@ public class CustomerViewForm extends javax.swing.JPanel {
 	// End of variables declaration//GEN-END:variables
 
 
+        //TESTing model includes customer
+        public boolean acceptanceTestAddCustomerTest(Customer customer){
+            if(((CustomerTableModel)jTable1.getModel()).contains(customer)) return true;
+            else return false;
+        }
 }

@@ -27,7 +27,7 @@ public class ControllerTest {
      */
     @Test
     public void testHandleClaimAdd() {
-        Model model = new Model();
+        Model model = new Model(true);
         Controller instance = new Controller(model);
         Customer customer = new Customer("Adam", "Klíma", 1);
         model.getDb().addCustomer(customer);
@@ -42,7 +42,7 @@ public class ControllerTest {
     
     @Test
     public void testHandleCustomerAdd() {        
-        Model model = new Model();
+        Model model = new Model(true);
         Controller controller = new Controller(model);        
         Customer customer = new Customer("Adam", "Klíma", 3);
         controller.handleCustomerAdd("Adam", "Klíma", 3);

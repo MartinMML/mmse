@@ -3,6 +3,9 @@ package com.mmse.insurance.view;
 import javax.swing.JFrame;
 
 import com.mmse.insurance.control.Controller;
+import com.mmse.insurance.model.entities.Customer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -148,6 +151,7 @@ public class AddCustomerForm extends javax.swing.JPanel {
             CustomerSurnameTextField.getText(),
             Integer.parseInt(CustomerIdTextField.getText()));
         close();
+        System.out.println("clicked");
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -172,6 +176,19 @@ public class AddCustomerForm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton selectButton;
     // End of variables declaration//GEN-END:variables
-
+    
+    //TESTing method acceptance test
+    void performAcceptanceTestAddClient(Customer customer){
+        CustomerIdTextField.setText(Integer.toString(customer.getPersonalId()));
+        CustomerNameTextField.setText(customer.getFirstName());
+        CustomerSurnameTextField.setText(customer.getLastName());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AddCustomerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        addButton.doClick();        
+        
+    }
     
 }
