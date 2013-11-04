@@ -3,7 +3,6 @@ package com.mmse.insurance.view;
 import java.util.Set;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -44,7 +43,6 @@ public class MainView extends javax.swing.JFrame {
     public void refresh(){
         claimForm.refresh();
         customerForm.refresh();
-        controller.getModel().saveDatabase(); // TODO Remove it if you don't want to save all the modifications
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,7 +54,7 @@ public class MainView extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem3 = new javax.swing.JMenuItem();
-        resetButton = new javax.swing.JButton();
+        resetButton = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -67,6 +65,11 @@ public class MainView extends javax.swing.JFrame {
         jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         resetButton.setText("Reset");
         resetButton.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +148,7 @@ public class MainView extends javax.swing.JFrame {
          JFrame frame = new JFrame("Add new Customer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel contentPane = new AddCustomerForm(controller);
+        JPanel contentPane = new CustomerInputForm(controller);
         frame.setContentPane(contentPane);
         frame.pack();   
         frame.setLocationByPlatform(true);
@@ -156,6 +159,11 @@ public class MainView extends javax.swing.JFrame {
         controller.resetView();
     }//GEN-LAST:event_resetButtonActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        controller.applicationClosing();
+    }//GEN-LAST:event_formWindowClosing
+
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addCustomerButton;
@@ -165,7 +173,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private JButton resetButton;
+    private javax.swing.JToggleButton resetButton;
     // End of variables declaration//GEN-END:variables
 
     public void setClaims(Set<Claim> claimsByCustomer) {
@@ -174,14 +182,14 @@ public class MainView extends javax.swing.JFrame {
     
     public boolean acceptanceTestAddCustomer(Customer customer){
         JFrame frame = new JFrame("Add new Customer");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        JPanel contentPane = new AddCustomerForm(controller);
+        JPanel contentPane = new CustomerInputForm(controller);
         frame.setContentPane(contentPane);
         frame.pack();   
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
-        ((AddCustomerForm)contentPane).performAcceptanceTestAddClient(customer);
+        ((CustomerInputForm)contentPane).performAcceptanceTestAddClient(customer);
         
         boolean result =  customerForm.acceptanceTestAddCustomerTest(customer);
         //sleep to see the result
@@ -200,7 +208,7 @@ public class MainView extends javax.swing.JFrame {
     
     public boolean acceptanceTestAddClaim(Claim claim){
         JFrame frame = new JFrame("Add new Claim");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JPanel contentPane = new ClaimInputForm(controller);
         frame.setContentPane(contentPane);

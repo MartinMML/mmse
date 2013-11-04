@@ -8,6 +8,7 @@ import com.mmse.insurance.model.entities.Claim;
 import com.mmse.insurance.model.entities.ClaimState;
 import com.mmse.insurance.model.entities.Customer;
 import com.mmse.insurance.view.MainView;
+import com.mmse.insurance.view.dialogs.Dialog;
 
 public class Controller {
 
@@ -39,7 +40,7 @@ public class Controller {
 		}else {
 			try {
 				//call dialog
-				throw new Exception("Is not "+c.toString()+" insured Exception");
+                                new Dialog(view, "Error", "Is not "+c.toString()+" insured Exception");                            
 			} catch (Exception ex) {
 				Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
 			}
@@ -57,7 +58,7 @@ public class Controller {
 			view.setClaims(model.getDb().getClaimsByCustomer(customer));
 			view.refresh();
 		}else{
-			throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+			new Dialog(view, "Is not ensured", "This customer is not insured.");
 		}
 
 	}
@@ -66,4 +67,9 @@ public class Controller {
 		view.setClaims(model.getDb().getAllClaims());
 		view.refresh();
 	}
+
+    public void applicationClosing() {
+        model.getDb().closeDatabaseConnection();
+    }
+
 }

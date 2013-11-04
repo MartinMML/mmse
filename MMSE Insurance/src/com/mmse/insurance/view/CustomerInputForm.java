@@ -12,13 +12,10 @@ import java.util.logging.Logger;
  * @author Adam
  */
 @SuppressWarnings("serial")
-public class AddCustomerForm extends javax.swing.JPanel {
+public class CustomerInputForm extends javax.swing.JPanel {
     Controller controller;
 
-    /**
-     * Creates new form AddCustomerForm
-     */
-    public AddCustomerForm(Controller controller) {
+    public CustomerInputForm(Controller controller) {
         this.controller = controller;
         initComponents();
     }
@@ -131,10 +128,11 @@ public class AddCustomerForm extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CustomerIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addButton)
-                    .addComponent(selectButton)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cancelButton)
+                        .addComponent(selectButton))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -185,7 +183,7 @@ public class AddCustomerForm extends javax.swing.JPanel {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
-            Logger.getLogger(AddCustomerForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerInputForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         addButton.doClick();        
         

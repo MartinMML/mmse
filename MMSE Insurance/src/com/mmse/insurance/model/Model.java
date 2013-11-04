@@ -1,82 +1,22 @@
 package com.mmse.insurance.model;
 //test
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
-import com.mmse.insurance.model.entities.Claim;
-import com.mmse.insurance.model.entities.ClaimState;
-import com.mmse.insurance.model.entities.Customer;
-
 
 public class Model {
 
-	private String DB_PATH = "database.obj";
-	private Database db;
+	private IDatabase db;
         boolean testing;
 
 	public Model(boolean testing) {
-		db = new Database();
-                this.testing = testing;
+		db = new FileDatabase();
+                this.testing = testing;		
+	}	
 
-		// testForView();
-		
-		if(!testing) loadDatabase();
-		
-	}
-
-	/**
-	 * Assuming we have one and only one Database instance, we do not specify any parameter or any return value here
-	 */
-	public void saveDatabase() {
-            if(!testing){
-		try {
-			FileOutputStream fileOut = new FileOutputStream(DB_PATH);
-			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.writeObject(db);
-			out.close();
-			fileOut.close();
-			System.out.println("Serialized data is saved in "+ DB_PATH);
-		}catch(IOException i) {
-			i.printStackTrace();
-		}
-            }
-	}
-
-	/**
-	 * Assuming we have one and only one Database instance, we do not specify any parameter or any return value here
-	 */
-	private void loadDatabase() {
-		db = null;
-		FileInputStream fileIn;
-		try {
-			fileIn = new FileInputStream(DB_PATH);
-			ObjectInputStream in = new ObjectInputStream(fileIn);
-
-			db = (Database) in.readObject();
-
-			in.close();
-			fileIn.close();
-			System.out.println("Unserialized data from "+ DB_PATH);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public Database getDb() {
+	public IDatabase getDb() {
 		return db;
 	}
 
-	private void testForView() {
+	/*private void testForView() {
 		Customer c1 = new Customer("Adam", "Klima", 1);
 		Customer c2 = new Customer("Lucas", "Sartore", 2);
 		Customer c3 = new Customer("John", "Doe", 3);
@@ -103,5 +43,6 @@ public class Model {
 		saveDatabase();
 	}
 
+ */
 
 }

@@ -20,6 +20,7 @@ public class ClaimInputForm extends javax.swing.JPanel {
     public ClaimInputForm(Controller controller) {
         this.controller = controller;
         initComponents();
+        
     }
     
     private void close(){        
@@ -207,7 +208,7 @@ public class ClaimInputForm extends javax.swing.JPanel {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
-            Logger.getLogger(AddCustomerForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerInputForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         addButton.doClick();        
     }

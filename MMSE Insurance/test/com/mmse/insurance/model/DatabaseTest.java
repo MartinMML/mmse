@@ -23,7 +23,7 @@ public class DatabaseTest {
     
     @Test
     public void addCustomer(){
-        Database db = new Database();
+        FileDatabase db = new FileDatabase();
         Customer c = new Customer("Adam", "Klíma", 1);
         db.addCustomer(c);
         assertEquals(true, db.getCustomers().contains(c));
@@ -31,7 +31,7 @@ public class DatabaseTest {
 
     @Test
     public void addClaim(){
-        Database db = new Database();
+        FileDatabase db = new FileDatabase();
         Claim claim = new Claim(new Customer("","",1), 10.0, 10.0, ClaimState.Paid);
         db.addClaim(claim);
         assertEquals(true,db.getAllClaims().contains(claim));
@@ -43,7 +43,7 @@ public class DatabaseTest {
      */
     @Test
     public void testIsInsured() {
-        Database db = new Database();
+        FileDatabase db = new FileDatabase();
         Customer c = new Customer("Adam", "Klíma", 1);
         db.addCustomer(c);
         assertEquals(true, db.isInsured(c));
@@ -51,7 +51,7 @@ public class DatabaseTest {
     
     @Test
     public void testClaimsOfCustomer(){
-        Database db = new Database();
+        FileDatabase db = new FileDatabase();
         Customer c1 = new Customer("Adam", "Klíma", 1);
         Customer c2 = new Customer("Lucas", "Sartore", 2);
         db.addCustomer(c1);
@@ -70,7 +70,7 @@ public class DatabaseTest {
     
     @Test
     public void testClaimsOfCustomer2(){
-        Database db = new Database();
+        FileDatabase db = new FileDatabase();
         Customer c1 = new Customer("Adam", "Klíma", 1);
         Customer c2 = new Customer("Lucas", "Sartore", 2);
         db.addCustomer(c1);
