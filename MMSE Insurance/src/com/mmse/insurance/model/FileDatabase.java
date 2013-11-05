@@ -36,6 +36,7 @@ public class FileDatabase implements IDatabase, Serializable  {
     /**
      * used only for testing purposes
      */
+    @Override
     public void clearDatabase(){
         claims.clear();
         users.clear();
@@ -149,5 +150,12 @@ public class FileDatabase implements IDatabase, Serializable  {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void setClaimSeverness(Claim claim, boolean severe) {
+        claims.remove(claim);
+        claim.setSevere(severe);
+        claims.add(claim);
     }
 }

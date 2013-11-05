@@ -17,7 +17,7 @@ public class Model {
         
         db = new FileDatabase();
         
-        //db.addUser(new User("adam", "pass", Role.CarDept));
+        db.addUser(new User("root", "pass", Role.ClaimHandlerA));
     }
 
     public Role getAuthenticatedRole() {

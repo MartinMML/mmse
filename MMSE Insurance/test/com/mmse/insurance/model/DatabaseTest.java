@@ -92,6 +92,7 @@ public class DatabaseTest {
     @Test
     public void testGetUserByName(){
         FileDatabase db = new FileDatabase();
+        db.clearDatabase();
         User user = new User("adam", "1234", Role.CarDept);
         db.addUser(user);
         assertEquals(user, db.getUserByLogin("adam"));

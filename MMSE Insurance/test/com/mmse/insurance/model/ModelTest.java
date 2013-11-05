@@ -21,6 +21,7 @@ public class ModelTest {
     @Test
     public void testAuthenticationTrue() {
         Model model = new Model();
+        model.getDb().clearDatabase();
         User user = new User("adam", "1234", Role.CarDept);
         model.getDb().addUser(user);
         assertEquals(true, model.authenticate("adam", "1234"));

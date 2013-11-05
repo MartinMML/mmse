@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import com.mmse.insurance.control.Controller;
 import com.mmse.insurance.model.entities.Claim;
 import com.mmse.insurance.model.entities.Customer;
+import static com.mmse.insurance.model.entities.Role.CarDept;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -41,8 +42,33 @@ public class MainView extends javax.swing.JFrame {
         this.getContentPane().add(customerForm);
         this.pack();
         this.setVisible(true);
+        enableButtonsBasedOnRole();
         refreshUser();
                 
+    }
+    
+    void enableButtonsBasedOnRole() {
+        switch (controller.getModel().getAuthenticatedRole()) {
+            case CarDept:
+                assesClaimButton.setEnabled(false);
+                addClaimButton.setEnabled(true);
+                addCustomerButton.setEnabled(true);
+                break;
+            case ClaimHandlerA:
+            case ClaimHandlerB:                
+                assesClaimButton.setEnabled(true);
+                addClaimButton.setEnabled(true);
+                addCustomerButton.setEnabled(true);
+                break;
+            case FinanceDept:                
+                assesClaimButton.setEnabled(false);
+                addClaimButton.setEnabled(false);
+                addCustomerButton.setEnabled(false);
+                break;
+            default:
+                break;
+
+        }
     }
     
     void refreshUser(){
@@ -64,14 +90,14 @@ public class MainView extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem3 = new javax.swing.JMenuItem();
-        resetButton = new javax.swing.JToggleButton();
         loginState = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        addClaimButton = new javax.swing.JMenuItem();
         addCustomerButton = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        assesClaimButton = new javax.swing.JMenuItem();
 
         jMenuItem3.setText("jMenuItem3");
 
@@ -82,8 +108,8 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        resetButton.setText("Reset");
-        resetButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Reset");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetButtonActionPerformed(evt);
             }
@@ -94,13 +120,13 @@ public class MainView extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
 
-        jMenuItem1.setText("Add claim");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        addClaimButton.setText("Add claim");
+        addClaimButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                addClaimButtonActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(addClaimButton);
 
         addCustomerButton.setText("Add/Select customer");
         addCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -110,13 +136,13 @@ public class MainView extends javax.swing.JFrame {
         });
         jMenu2.add(addCustomerButton);
 
-        jMenuItem2.setText("Asses claim severeness");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        assesClaimButton.setText("Asses claim severeness");
+        assesClaimButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                assesClaimButtonActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu2.add(assesClaimButton);
 
         jMenuBar1.add(jMenu2);
 
@@ -126,25 +152,29 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(0, 545, Short.MAX_VALUE)
-                .addComponent(loginState, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(resetButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(loginState, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(resetButton)
-                    .addComponent(loginState, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 343, Short.MAX_VALUE))
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(loginState, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 314, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void addClaimButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClaimButtonActionPerformed
         JFrame frame = new JFrame("Add new Claim");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -153,11 +183,11 @@ public class MainView extends javax.swing.JFrame {
         frame.pack();   
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_addClaimButtonActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void assesClaimButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assesClaimButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_assesClaimButtonActionPerformed
 
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
          JFrame frame = new JFrame("Add new Customer");
@@ -181,15 +211,15 @@ public class MainView extends javax.swing.JFrame {
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addClaimButton;
     private javax.swing.JMenuItem addCustomerButton;
+    private javax.swing.JMenuItem assesClaimButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JLabel loginState;
-    private javax.swing.JToggleButton resetButton;
     // End of variables declaration//GEN-END:variables
 
     public void setClaims(Set<Claim> claimsByCustomer) {

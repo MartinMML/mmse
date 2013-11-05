@@ -23,7 +23,10 @@ public class ClaimInputFormTest {
 
     @Test
     public void testClaimAdd() {
-        Controller controller = new Controller(new Model());
+        
+        Model model = new Model();
+        model.authenticate("adam", "pass");
+        Controller controller = new Controller(model);
         MainView view = new MainView(controller);
         controller.setView(view);
         

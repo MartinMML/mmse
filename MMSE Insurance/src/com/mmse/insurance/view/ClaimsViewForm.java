@@ -5,6 +5,10 @@ import java.util.Set;
 import com.mmse.insurance.control.Controller;
 import com.mmse.insurance.model.entities.Claim;
 import com.mmse.insurance.model.entities.Customer;
+import com.mmse.insurance.model.entities.Role;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -43,7 +47,25 @@ public class ClaimsViewForm extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+
         jTable1.setModel(new ClaimTableModel(controller.getModel().getDb().getAllClaims()));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                jTable1CaretPositionChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -51,14 +73,45 @@ public class ClaimsViewForm extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, Short.MAX_VALUE)
-        );        
-        
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseClicked
+
+    private void jTable1CaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable1CaretPositionChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTable1CaretPositionChanged
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        if(SwingUtilities.isRightMouseButton(evt)){
+            Claim claim = ((ClaimTableModel)jTable1.getModel()).getClaim(jTable1.getSelectedRow()+1);
+            System.out.println(claim);
+            if((controller.getModel().getAuthenticatedRole().equals(Role.ClaimHandlerA)||
+                    controller.getModel().getAuthenticatedRole().equals(Role.ClaimHandlerB))){
+                JFrame frame = new JFrame("Set severity");
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+                JPanel contentPane = new AssesSevernessForm(controller, claim);
+                frame.setContentPane(contentPane);
+                frame.pack();   
+                frame.setLocationByPlatform(true);
+                frame.setVisible(true);
+            }else{
+                System.out.println("no access rigths");
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

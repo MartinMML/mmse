@@ -38,5 +38,7 @@ public interface IDatabase {
     
     public void addUser(User u);
     public User getUserByLogin(String login);
+    public void clearDatabase();
+    public void setClaimSeverness(Claim claim, boolean severe);
     
 }
