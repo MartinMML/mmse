@@ -7,6 +7,8 @@ package com.mmse.insurance.model;
 import com.mmse.insurance.model.entities.Claim;
 import com.mmse.insurance.model.entities.ClaimState;
 import com.mmse.insurance.model.entities.Customer;
+import com.mmse.insurance.model.entities.Role;
+import com.mmse.insurance.model.entities.User;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.Test;
@@ -52,6 +54,7 @@ public class DatabaseTest {
     @Test
     public void testClaimsOfCustomer(){
         FileDatabase db = new FileDatabase();
+        db.clearDatabase();
         Customer c1 = new Customer("Adam", "Klíma", 1);
         Customer c2 = new Customer("Lucas", "Sartore", 2);
         db.addCustomer(c1);
@@ -71,6 +74,7 @@ public class DatabaseTest {
     @Test
     public void testClaimsOfCustomer2(){
         FileDatabase db = new FileDatabase();
+        db.clearDatabase();
         Customer c1 = new Customer("Adam", "Klíma", 1);
         Customer c2 = new Customer("Lucas", "Sartore", 2);
         db.addCustomer(c1);
@@ -85,4 +89,12 @@ public class DatabaseTest {
         expectedResult.add(claim3);
         assertEquals(expectedResult, db.getClaimsByCustomer(c2));
     }
+    @Test
+    public void testGetUserByName(){
+        FileDatabase db = new FileDatabase();
+        User user = new User("adam", "1234", Role.CarDept);
+        db.addUser(user);
+        assertEquals(user, db.getUserByLogin("adam"));
+    }
+    
 }

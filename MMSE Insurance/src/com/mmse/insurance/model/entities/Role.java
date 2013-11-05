@@ -5,5 +5,5 @@ package com.mmse.insurance.model.entities;
  * @author Adam
  */
 public enum Role {
-    CarDept, ClaimHandlerA, ClaimHandlerB, FinanceDept
+    CarDept, ClaimHandlerA, ClaimHandlerB, FinanceDept, NotAuthenticated
 }

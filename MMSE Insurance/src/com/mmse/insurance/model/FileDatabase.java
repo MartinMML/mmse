@@ -12,12 +12,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 /**
  *
  * @author Adam
  */
-public class FileDatabase implements IDatabase {
+public class FileDatabase implements IDatabase, Serializable  {
 
     private String DB_PATH = "database.obj";
     /**
@@ -32,6 +33,14 @@ public class FileDatabase implements IDatabase {
         initializeDatabase();
     }
 
+    /**
+     * used only for testing purposes
+     */
+    public void clearDatabase(){
+        claims.clear();
+        users.clear();
+        customers.clear();
+    }
     
     
     @Override
@@ -75,6 +84,15 @@ public class FileDatabase implements IDatabase {
     public void deleteCustomer(Customer customer) {
         customers.remove(customer);
     }
+    
+    
+    @Override
+    public User getUserByLogin(String login){
+        for (User user : users) {
+            if(user.getUsername().equals(login)) return user;
+        }
+        return null;
+    }
 
     @Override
     public void addClaim(Claim claim) {
@@ -87,6 +105,10 @@ public class FileDatabase implements IDatabase {
         
     }
 
+    @Override
+    public void addUser(User u){
+        users.add(u);
+    }
     /**
      * Assuming we have one and only one Database instance, we do not specify
      * any parameter or any return value here

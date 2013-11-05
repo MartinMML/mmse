@@ -11,6 +11,7 @@ import com.mmse.insurance.model.entities.Claim;
 import com.mmse.insurance.model.entities.Customer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 
 /**
  *
@@ -33,14 +34,23 @@ public class MainView extends javax.swing.JFrame {
         claimForm = new ClaimsViewForm(controller);
         customerForm = new CustomerViewForm(controller);
         
+        
+        this.getContentPane().add(new JLabel("Claims"));
         this.getContentPane().add(claimForm);
+        this.getContentPane().add(new JLabel("Customers"));
         this.getContentPane().add(customerForm);
         this.pack();
         this.setVisible(true);
+        refreshUser();
                 
+    }
+    
+    void refreshUser(){
+        loginState.setText(controller.getModel().getAuthenticatedUser().toString());
     }
 
     public void refresh(){
+        refreshUser();
         claimForm.refresh();
         customerForm.refresh();
     }
@@ -55,6 +65,7 @@ public class MainView extends javax.swing.JFrame {
 
         jMenuItem3 = new javax.swing.JMenuItem();
         resetButton = new javax.swing.JToggleButton();
+        loginState = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -116,13 +127,17 @@ public class MainView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 613, Short.MAX_VALUE)
+                .addGap(0, 545, Short.MAX_VALUE)
+                .addComponent(loginState, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(resetButton))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(resetButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(resetButton)
+                    .addComponent(loginState, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 343, Short.MAX_VALUE))
         );
 
@@ -173,6 +188,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JLabel loginState;
     private javax.swing.JToggleButton resetButton;
     // End of variables declaration//GEN-END:variables
 

@@ -14,7 +14,7 @@ import java.util.Set;
  *
  * @author Adam
  */
-public interface IDatabase extends Serializable {
+public interface IDatabase {
 
     void addClaim(Claim claim);
 
@@ -35,5 +35,8 @@ public interface IDatabase extends Serializable {
     boolean isInsured(Customer customer);
 
     public void closeDatabaseConnection();
+    
+    public void addUser(User u);
+    public User getUserByLogin(String login);
     
 }
